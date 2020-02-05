@@ -17,8 +17,8 @@ private EmployerRepository employerRepository;
     @NotBlank(message = "Location is required")
     private String location;
 
-    @OneToMany
-    @JoinColumn
+    @OneToMany (mappedBy = "employer")
+    //@JoinColumn
     private List<Job> jobs = new ArrayList<>();
 
     public Employer(@NotBlank(message = "Location is required") String location) {
