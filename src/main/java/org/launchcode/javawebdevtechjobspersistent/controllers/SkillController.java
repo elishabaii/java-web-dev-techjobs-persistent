@@ -17,9 +17,7 @@ public class SkillController {
 
     @Autowired
     private SkillRepository skillRepository;
-    private Skill newSkill;
-    private Errors errors;
-    private Model model;
+
 
     @GetMapping("add")
     public String displaySkillForm(Model model){
@@ -48,46 +46,7 @@ public class SkillController {
             model.addAttribute("skill", skillRepository.findAll());
             return "skills/view";
         } else {
-            return "redirect:../";
+            return "redirect:../index";
         }
     }
 }
-
-
-/*@Controller
-@RequestMapping("employers")
-public class EmployerController {
-
-
-    private EmployerRepository employerRepository;
-
-    @GetMapping("add")
-    public String displayAddEmployerForm(Model model) {
-        model.addAttribute(new Employer());
-        return "employers/add";
-    }
-
-    @PostMapping("add")
-    public String processAddEmployerForm(@ModelAttribute @Valid Employer newEmployer,
-                                    Errors errors, Model model) {
-
-        if (errors.hasErrors()) {
-            return "employers/add";
-        }
-
-        return "redirect:";
-    }
-
-    @GetMapping("view/{employerId}")
-    public String displayViewEmployer(Model model, @PathVariable int employerId) {
-
-        Optional <Employer>optEmployer = employerRepository.findById(employerId);
-        if (optEmployer.isPresent()) {
-            Employer employer = (Employer) optEmployer.get();
-            model.addAttribute("employer", employerRepository.findAll());
-            return "employers/view";
-        } else {
-            return "redirect:../";
-        }
-    }
-}*/
