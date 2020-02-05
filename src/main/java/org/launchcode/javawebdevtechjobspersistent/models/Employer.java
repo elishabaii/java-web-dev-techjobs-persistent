@@ -1,8 +1,5 @@
 package org.launchcode.javawebdevtechjobspersistent.models;
 
-import org.launchcode.javawebdevtechjobspersistent.models.data.EmployerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -12,17 +9,17 @@ import java.util.List;
 
 @Entity
 public class Employer extends AbstractEntity {
-@Autowired
-private EmployerRepository employerRepository;
+
     @NotBlank(message = "Location is required")
     private String location;
 
-    @OneToMany (mappedBy = "employer")
-    //@JoinColumn
+    @OneToMany
+    @JoinColumn
     private List<Job> jobs = new ArrayList<>();
 
-    public Employer(@NotBlank(message = "Location is required") String location) {
+    public Employer(@NotBlank(message = "Location is required") String location, List<Job> jobs) {
         this.location = location;
+        this.jobs = jobs;
     }
 
     public Employer() {}
