@@ -41,7 +41,7 @@ public class EmployerController {
             return "employers../index";
         }
         employerRepository.save(newEmployer);
-        return "redirect:";
+        return "redirect:../";
     }
 
     @GetMapping("view/{employerId}")
@@ -50,7 +50,7 @@ public class EmployerController {
         Optional <Employer>optEmployer = employerRepository.findById(employerId);
         if (optEmployer.isPresent()) {
             Employer employer = (Employer) optEmployer.get();
-            model.addAttribute("employer", employerRepository.findAll());
+            model.addAttribute("employer", employer);
             return "employers/view";
         } else {
             return "redirect:../";
