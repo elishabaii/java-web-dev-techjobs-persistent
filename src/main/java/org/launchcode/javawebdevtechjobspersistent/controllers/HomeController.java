@@ -30,11 +30,11 @@ public class HomeController {
     @Autowired
     private SkillRepository skillRepository;
 
-    @RequestMapping("")
+    @GetMapping
     public String index(Model model) {
 
         model.addAttribute("title", "My Jobs");
-
+        model.addAttribute("jobs",jobRepository.findAll());
         return "index";
     }
 
